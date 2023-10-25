@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             xmlns:converters="clr-namespace:FlickSearch.Converters"
+             x:Class="FlickSearch.Views.MainPage">
+    <ContentPage.Resources>
+        <converters:ListVisibleConverter x:Key="listConverter" />
+    </ContentPage.Resources>
+    <StackLayout BackgroundColor="White">
+        <Frame BackgroundColor="#EBEDEF"
+               Padding="0"
+               CornerRadius="15"
+                     Margin="15,20,15,15">
+            <SearchBar x:Name="searchBar"
+                   Placeholder="Enter text to search images..."
+                   Text="{Binding SearchText}"
+                   SearchCommand="{Binding PerformSearch}"
+                   SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}">
+            </SearchBar>
+        </Frame>
+        <StackLayout Margin="15" IsVisible="{Binding IsListVisible, Converter={StaticResource listConverter}}">
+            <forms:AnimationView
+                Animation="animation_lo5qdxro.json"
+                AnimationSource="AssetOrBundle"
+                HeightRequest="500"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                RepeatCount="5"
+                RepeatMode="Restart"/>
+            <Label
+                FontSize="20"
+                HorizontalOptions="CenterAndExpand"
+                Text="Nessun elemento trovato"
+                TextColor="Black" />
+        </StackLayout>
+        <CollectionView x:Name="myCollectionView"
+                        IsVisible="{Binding IsListVisible}"
+                        ItemsSource="{Binding Images}"
+                        SelectionMode="Single"
+                        SelectionChangedCommand="{Binding OpenImageDetailCommand}"
+                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference myCollectionView}}"
+                        ItemsLayout="VerticalGrid, 2"
+                        RemainingItemsThreshold="4"
+                        RemainingItemsThresholdReachedCommand="{Binding LoadMoreImages}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5">
+                        <Image Source="{Binding ImageUrl}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

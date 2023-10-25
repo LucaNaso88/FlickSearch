@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FlickSearch.Views.ImageDetail">
+    <ContentPage.Content>
+        <StackLayout Margin="15">
+                <StackLayout Orientation="Horizontal"
+                             Padding="3">
+                    <Label Text="TITLE: "
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           MinimumWidthRequest="100"
+                           MaxLines="1"
+                           FontSize="18"/>
+                    <Label Text="{Binding ImageTitle}"
+                           FontSize="18"
+                           TextColor="Black"
+                           HorizontalOptions="Start">
+                    </Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                             Padding="3">
+                    <Label Text="OWNER: "
+                           FontAttributes="Bold"
+                           MinimumWidthRequest="100"
+                           TextColor="Black"
+                           FontSize="18"/>
+                    <Label Text="{Binding ImageDetail.Owner}"
+                           FontSize="18"
+                           TextColor="Black"
+                           HorizontalOptions="Start">
+                    </Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                             Padding="3">
+                    <Label Text="SHOOTING DATE: "
+                           FontAttributes="Bold"
+                           MinimumWidthRequest="100"
+                           TextColor="Black"
+                           FontSize="18"/>
+                    <Label Text="{Binding ImageDetail.TakenData}"
+                           FontSize="18"
+                           TextColor="Black"
+                           HorizontalOptions="Start">
+                    </Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                             Padding="3">
+                    <Label Text="LOCATION: "
+                           FontAttributes="Bold"
+                           MinimumWidthRequest="100"
+                           TextColor="Black"
+                           FontSize="18"/>
+                    <Label Text="{Binding ImageDetail.Location}"
+                           FontSize="18"
+                           TextColor="Black"
+                           HorizontalOptions="Start">
+                    </Label>
+                </StackLayout>
+                <Image 
+                   Source="{Binding ImageUrl}"
+                    Margin="0,20,0,0"
+                   Aspect="AspectFit">
+                </Image>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
